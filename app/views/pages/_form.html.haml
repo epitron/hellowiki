@@ -1,0 +1,19 @@
+= form_for @page do |f|
+
+  - @page.errors.full_messages.each do |msg|
+    %p= msg
+  
+  %p
+    = f.label :title
+    = f.text_field :title
+  
+  = f.fields_for @page.latest do |r|
+    %p
+      = r.label :body
+      = r.text_area :body, size: "80x30"
+    %p
+      = r.label :engine
+      = r.select :engine, Revision::ENGINES.keys
+      = link_to "Markdown Syntax", "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet", target: "_blank"
+
+  %p= f.submit

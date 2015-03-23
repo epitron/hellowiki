@@ -1,0 +1,16 @@
+
+%h1= link_to @page.title, @page
+
+%h4 Comparing:
+
+- if @previous.previous
+  %p= link_to "< previous revision", diff_page_revision_path(@page, @previous)
+
+%ul
+  %li revision #{@previous.id} (#{@previous.age}) with
+  %li revision #{@current.id} (#{@current.age})
+
+- if @current.next
+  %p= link_to "next revision >", diff_page_revision_path(@page, @current.next)
+
+= @diff.html_safe

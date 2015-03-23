@@ -1,0 +1,14 @@
+%h1= @page.title
+
+%table.revisions
+  - @page.history.each do |revision|
+    %tr
+      %td
+        #{revision.body.size} bytes
+      %td
+        = revision.age
+      %td
+        = revision.user_ip
+      %td
+        - if revision.previous
+          = link_to "diff", diff_page_revision_path(revision.page, revision)

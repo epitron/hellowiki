@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Hellowiki
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav
+      %li
+        %form{action: pages_path}
+          %input{name: "search", value: params[:search]}
+      %li= link_to "index", pages_path
+      %li= link_to "new page", new_page_path
+        
+    = yield
